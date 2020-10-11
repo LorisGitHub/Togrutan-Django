@@ -20,5 +20,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/medias', views.medias_list)
+    path('api/medias', views.medias_list),
+    path('api/medias_preview', views.medias_preview),
+    path('api/getMediaFromImdbID', views.getMediaFromImdbID)
 ]
