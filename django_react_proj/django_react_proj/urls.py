@@ -15,12 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from media import views
+from media import views as mediaviews
+from user import views as userviews
 from django.conf.urls import url
+from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/medias', views.medias_list),
-    path('api/medias_preview', views.medias_preview),
-    path('api/getMediaFromImdbID', views.getMediaFromImdbID)
+
+    path('api/medias', mediaviews.medias_list),
+    path('api/medias_preview', mediaviews.medias_preview),
+    path('api/getMediaFromImdbID', mediaviews.getMediaFromImdbID),
+
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-verify/', verify_jwt_token),
+
+    path('api/users', userviews.users_list),
 ]
